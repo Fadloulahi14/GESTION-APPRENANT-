@@ -449,7 +449,7 @@ $success = recuperer_session('success');
   <!-- Tableau des apprenants -->
   <div class="table-container">
     <table>
-      <thead>
+      
         <tr>
           <th>Photo</th>
           <th>Matricule</th>
@@ -460,8 +460,8 @@ $success = recuperer_session('success');
           <th>Statut</th>
           <th>Actions</th>
         </tr>
-      </thead>
-      <tbody>
+     
+     
         <?php if (!empty($apprenants)): ?>
           <?php foreach ($apprenants as $apprenant): ?>
             <tr>
@@ -501,7 +501,7 @@ $success = recuperer_session('success');
         <?php else: ?>
           <tr><td colspan="8" style="text-align:center;">Aucun apprenant trouvé</td></tr>
         <?php endif; ?>
-      </tbody>
+     
     </table>
   </div>
 

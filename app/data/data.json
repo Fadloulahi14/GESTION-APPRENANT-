@@ -4,7 +4,7 @@
             "id": 1,
             "nom": "admin",
             "login": "fallou@sonatel.sn",
-            "password": "passer",
+            "password": "PASSER1234",
             "profil": "Admin"
         },
         {
@@ -13,14 +13,6 @@
             "login": "vigile@sonatel.sn",
             "password": "vigile123",
             "profil": "Vigile"
-        },
-        {
-            "id": 3,
-            "nom": "apprenant",
-            "login": "apprenant@sonatel.sn",
-            "password": "apprenant123",
-            "profil": "Apprenant",
-            "statut": "Retenu"
         },
         {
             "nom_complet": "Amy Oliver",
@@ -165,7 +157,7 @@
                 1745406851
             ],
             "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
-            "statut": "Active",
+            "statut": "Inactive",
             "nbrApprenant": 0
         },
         {
@@ -223,7 +215,7 @@
                 1745948780
             ],
             "photo": "assets\/images\/promo\/Capture d’écran du 2025-03-12 18-26-02.png",
-            "statut": "Inactive",
+            "statut": "Active",
             "nbrApprenant": 1
         },
         {
