@@ -1,0 +1,304 @@
+{
+    "utilisateurs": [
+        {
+            "id": 1,
+            "nom": "admin",
+            "login": "fallou@sonatel.sn",
+            "password": "passer",
+            "profil": "Admin"
+        },
+        {
+            "id": 2,
+            "nom": "vigile",
+            "login": "vigile@sonatel.sn",
+            "password": "vigile123",
+            "profil": "Vigile"
+        },
+        {
+            "id": 3,
+            "nom": "apprenant",
+            "login": "apprenant@sonatel.sn",
+            "password": "apprenant123",
+            "profil": "Apprenant",
+            "statut": "Retenu"
+        },
+        {
+            "nom_complet": "Amy Oliver",
+            "date_naissance": "2004-05-31",
+            "lieu_naissance": "West Justinmouth",
+            "adresse": "PSC 4073, Box 4605, APO AA 77164",
+            "login": "rgross@pineda.com",
+            "telephone": "773220079",
+            "document": "assets\/images\/apprenants\/photo6.jpg",
+            "tuteur_nom": "Julie Liu",
+            "lien_parente": "Oncle",
+            "tuteur_adresse": "90384 Scott Inlet Suite 644, Lauraberg, NJ 63233",
+            "tuteur_telephone": "776165739",
+            "referenciel": 101,
+            "password": "$2y$10$f.c0fUty428.2v\/EJfHc9e3q0F7jeueBk4gEZaokmh5CCgTjXvSKW",
+            "statut": "Retenu",
+            "profil": "Apprenant",
+            "id": 1746041117
+        }
+    ],
+    "referenciel": [
+        {
+            "id": 1745406771,
+            "nom": "DEVWEB MOBIL",
+            "description": "session1",
+            "capacite": 50,
+            "sessions": 1,
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "modules": 0,
+            "apprenants": 0
+        },
+        {
+            "id": 1745406809,
+            "nom": "haheuse",
+            "description": "bgvfdc",
+            "capacite": 50,
+            "sessions": 1,
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "modules": 0,
+            "apprenants": 0
+        },
+        {
+            "id": 1745406851,
+            "nom": "ref",
+            "description": "ynhbtgvr",
+            "capacite": 50,
+            "sessions": 1,
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "modules": 0,
+            "apprenants": 0
+        },
+        {
+            "id": 1745407054,
+            "nom": "AWS",
+            "description": "htgef",
+            "capacite": 50,
+            "sessions": 1,
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "modules": 0,
+            "apprenants": 0
+        },
+        {
+            "id": 1745562008,
+            "nom": "AI",
+            "description": "ib",
+            "capacite": 50,
+            "sessions": 1,
+            "photo": "assets\/images\/promo\/Capture d’écran du 2025-02-28 22-49-43.png",
+            "modules": 0,
+            "apprenants": 0
+        },
+        {
+            "id": 1745573069,
+            "nom": "wane",
+            "description": "odc",
+            "capacite": 50,
+            "sessions": 1,
+            "photo": "assets\/images\/promo\/Capture d’écran du 2025-02-28 23-01-42.png",
+            "modules": 0,
+            "apprenants": 0
+        },
+        {
+            "id": 1745948780,
+            "nom": "mama",
+            "description": "(((((((((((T",
+            "capacite": 50,
+            "sessions": 1,
+            "photo": "assets\/images\/referentiel\/default.png",
+            "modules": 0,
+            "apprenants": 0
+        }
+    ],
+    "promotions": [
+        {
+            "id": 1,
+            "nom": "promo2024",
+            "dateDebut": "17\/2\/2002",
+            "dateFin": "17\/2\/2003",
+            "referenciels": [
+                1745406809,
+                1745406771,
+                1745573069
+            ],
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 2,
+            "nom": "promo205",
+            "dateDebut": "17\/2\/2002",
+            "dateFin": "17\/2\/2003",
+            "referenciels": [
+                1745406809
+            ],
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 3,
+            "nom": "promo2026",
+            "dateDebut": "17\/2\/2002",
+            "dateFin": "17\/2\/2003",
+            "referenciels": [
+                1745406771,
+                1745406809,
+                1745406851
+            ],
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 4,
+            "nom": "promo2027",
+            "dateDebut": "17\/2\/2002",
+            "dateFin": "17\/2\/2003",
+            "referenciels": [
+                1745406771,
+                1745406809,
+                1745406851
+            ],
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "statut": "Active",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 5,
+            "nom": "fygvuhbijnok",
+            "dateDebut": "15\/2\/2000",
+            "dateFin": "17\/2\/2003",
+            "referenciels": [
+                1745406771,
+                1745406851,
+                1745407054
+            ],
+            "photo": "assets\/images\/promo\/Fallou_NDIAYE.jpg",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 6,
+            "nom": "promo2653",
+            "dateDebut": "15\/2\/2000",
+            "dateFin": "17\/2\/2003",
+            "referenciels": [
+                1745406771,
+                1745406809
+            ],
+            "photo": "assets\/images\/promo\/Capture d’écran du 2025-02-28 22-49-43.png",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 7,
+            "nom": "P2027",
+            "dateDebut": "1970-01-01",
+            "dateFin": "1970-01-01",
+            "referenciels": [
+                1745561929,
+                1745561888,
+                1745561970,
+                1745407054,
+                1745406851,
+                1745406809
+            ],
+            "photo": "assets\/images\/promo\/Capture d’écran du 2025-02-28 23-01-42.png",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 8,
+            "nom": "PROMO ACTIVE",
+            "dateDebut": "2025-01-01",
+            "dateFin": "2026-01-01",
+            "referenciels": [
+                1745406851,
+                1745407054,
+                1745948780
+            ],
+            "photo": "assets\/images\/promo\/Capture d’écran du 2025-03-12 18-26-02.png",
+            "statut": "Inactive",
+            "nbrApprenant": 1
+        },
+        {
+            "id": 9,
+            "nom": "fallou",
+            "dateDebut": "1970-01-01",
+            "dateFin": "1970-01-01",
+            "referenciels": [
+                1745406771
+            ],
+            "photo": "assets\/images\/promo\/Capture d’écran du 2025-02-28 23-01-42.png",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        },
+        {
+            "id": 10,
+            "nom": "promo2653",
+            "dateDebut": "1970-01-01",
+            "dateFin": "1970-01-01",
+            "referenciels": [
+                1745406771
+            ],
+            "photo": "assets\/images\/promo\/Capture d’écran du 2025-02-28 23-01-42.png",
+            "statut": "Inactive",
+            "nbrApprenant": 0
+        }
+    ],
+    "apprenants": [
+        {
+            "id": 1,
+            "matricule": "2025001",
+            "nom": "NDIAYE",
+            "prenom": "Fallou",
+            "photo": "chemin\/vers\/photo.jpg",
+            "adresse": "Sicap Krack",
+            "telephone": "7780127331",
+            "referentiel_id": 2,
+            "promotion_id": 1,
+            "statut": "Actif"
+        },
+        {
+            "id": 1,
+            "matricule": "2025002",
+            "nom": "Marra",
+            "prenom": "ousmane",
+            "photo": "chemin\/vers\/photo.jpg",
+            "adresse": "Sicap Krack",
+            "telephone": "7780127331",
+            "referentiel_id": 3,
+            "promotion_id": 1,
+            "statut": "Actif"
+        },
+        {
+            "id": 1,
+            "matricule": "2025002",
+            "nom": "Marra",
+            "prenom": "ousmane",
+            "photo": "chemin\/vers\/photo.jpg",
+            "adresse": "Sicap Krack",
+            "telephone": "7780127331",
+            "referentiel_id": 3,
+            "promotion_id": 1,
+            "statut": "Actif"
+        },
+        {
+            "id": 1,
+            "matricule": "2025002",
+            "nom": "Marra",
+            "prenom": "ousmane",
+            "photo": "chemin\/vers\/photo.jpg",
+            "adresse": "Sicap Krack",
+            "telephone": "7780127331",
+            "referentiel_id": 3,
+            "promotion_id": 1,
+            "statut": "Actif"
+        }
+    ]
+}
