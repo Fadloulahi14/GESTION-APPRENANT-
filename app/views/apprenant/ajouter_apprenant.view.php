@@ -124,7 +124,7 @@ demarrer_session();
         <!-- Email (Login) -->
         <div class="form-group">
           <label>Email</label>
-          <input type="email" name="email" placeholder="Ex: email@exemple.com" value="<?= htmlspecialchars($old['email'] ?? '') ?>" class="<?= !empty($errors['email']) ? 'alert' : '' ?>">
+          <input type="email" name="login" placeholder="Ex: email@exemple.com" value="<?= htmlspecialchars($old['email'] ?? '') ?>" class="<?= !empty($errors['email']) ? 'alert' : '' ?>">
           <?php if (!empty($errors['email'])): ?><p class="error-message"><?= htmlspecialchars($errors['email']) ?></p><?php endif; ?>
         </div>
 
@@ -196,6 +196,7 @@ demarrer_session();
         </div>
 
         <!-- Adresse du Tuteur -->
+
         <div class="form-group">
           <label>Adresse du Tuteur</label>
           <input type="text" name="tuteur_adresse" placeholder="Ex: Dakar" value="<?= htmlspecialchars($old['tuteur_adresse'] ?? '') ?>" class="<?= !empty($errors['tuteur_adresse']) ? 'alert' : '' ?>">
@@ -203,15 +204,17 @@ demarrer_session();
         </div>
 
         <!-- Téléphone du Tuteur -->
+
         <div class="form-group">
           <label>Téléphone du Tuteur</label>
           <input type="text" name="tuteur_telephone" placeholder="Ex: 770000001" value="<?= htmlspecialchars($old['tuteur_telephone'] ?? '') ?>" class="<?= !empty($errors['tuteur_telephone']) ? 'alert' : '' ?>">
           <?php if (!empty($errors['tuteur_telephone'])): ?><p class="error-message"><?= htmlspecialchars($errors['tuteur_telephone']) ?></p><?php endif; ?>
         </div>
-
+          
       </div>
     </section>
 
+            
     <div class="buttons">
       <a href="index.php?page=liste_apprenant" class="cancel">Annuler</a>
       <button type="submit" class="submit">Enregistrer</button>

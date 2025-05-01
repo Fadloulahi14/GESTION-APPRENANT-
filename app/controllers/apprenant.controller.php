@@ -209,7 +209,7 @@ function traiter_ajout_apprenant(): void {
             'date_naissance' => trim($_POST['date_naissance'] ?? ''),
             'lieu_naissance' => trim($_POST['lieu_naissance'] ?? ''),
             'adresse' => trim($_POST['adresse'] ?? ''),
-            'email' => trim($_POST['email'] ?? ''),
+            'email' => trim($_POST['email'] ?? ''), // Utilisation correcte de "email"
             'telephone' => trim($_POST['telephone'] ?? ''),
             'referenciel' => (int)($_POST['referenciel'] ?? 0),
             'tuteur_nom' => trim($_POST['tuteur_nom'] ?? ''),
@@ -221,7 +221,7 @@ function traiter_ajout_apprenant(): void {
         ];
 
         // Validez les données
-        $errors = $validator[VALIDATORMETHODE::VALIDATE_APPRENANT->value]($data);
+        $errors = $validator[VALIDATORMETHODE::APPRENANT->value]($data); // Utilisation correcte de la constante
 
         if (!empty($errors)) {
             enregistrer_message_erreur('Veuillez corriger les erreurs dans le formulaire.');

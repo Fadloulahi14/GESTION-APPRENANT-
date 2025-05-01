@@ -27,6 +27,6 @@ enum VALIDATORMETHODE: string
       case REF = 'is_ref';
 
 
-      case APPRENANT='APPRENANT';
+      case APPRENANT = 'apprenant'; 
 
 }

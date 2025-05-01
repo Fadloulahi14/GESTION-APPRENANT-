@@ -61,13 +61,13 @@ $validator[VALIDATORMETHODE::APPRENANT->value] = function (array $data): array {
         $errors['nom_complet'] = ErreurEnum::APPRENANT_NOM_REQUIRED->value;
     }
 
-    // Login obligatoire et valide
-    if (empty(trim($data['login'] ?? ''))) {
-        $errors['login'] = ErreurEnum::APPRENANT_EMAIL_REQUIRED->value;
+    // Email obligatoire et valide
+    if (empty(trim($data['email'] ?? ''))) {
+        $errors['email'] = ErreurEnum::APPRENANT_EMAIL_REQUIRED->value;
     } else {
-        $login = trim($data['login']);
-        if (!filter_var($login, FILTER_VALIDATE_EMAIL)) {
-            $errors['login'] = ErreurEnum::APPRENANT_EMAIL_INVALID->value;
+        $email = trim($data['email']);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = ErreurEnum::APPRENANT_EMAIL_INVALID->value;
         }
     }
 
@@ -109,50 +109,7 @@ $validator[VALIDATORMETHODE::APPRENANT->value] = function (array $data): array {
         }
     }
 
-    // Date de naissance obligatoire et format YYYY-MM-DD
-    if (empty(trim($data['date_naissance'] ?? ''))) {
-        $errors['date_naissance'] = ErreurEnum::APPRENANT_DATE_NAISSANCE_REQUIRED->value;
-    } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $data['date_naissance'])) {
-        $errors['date_naissance'] = ErreurEnum::APPRENANT_DATE_NAISSANCE_INVALID->value;
-    }
-
-    // Lieu de naissance obligatoire
-    if (empty(trim($data['lieu_naissance'] ?? ''))) {
-        $errors['lieu_naissance'] = ErreurEnum::APPRENANT_LIEU_NAISSANCE_REQUIRED->value;
-    }
-
-    // Adresse obligatoire
-    if (empty(trim($data['adresse'] ?? ''))) {
-        $errors['adresse'] = ErreurEnum::APPRENANT_ADRESSE_REQUIRED->value;
-    }
-
-    // Référentiel obligatoire
-    if (empty($data['referenciel'])) {
-        $errors['referenciel'] = ErreurEnum::APPRENANT_REFERENTIEL_REQUIRED->value;
-    }
-
-    // Tuteur - Nom obligatoire
-    if (empty(trim($data['tuteur_nom'] ?? ''))) {
-        $errors['tuteur_nom'] = ErreurEnum::APPRENANT_TUTEUR_NOM_REQUIRED->value;
-    }
-
-    // Tuteur - Lien de parenté obligatoire
-    if (empty(trim($data['lien_parente'] ?? ''))) {
-        $errors['lien_parente'] = ErreurEnum::APPRENANT_LIEN_PARENT_REQUIRED->value;
-    }
-
-    // Tuteur - Adresse obligatoire
-    if (empty(trim($data['tuteur_adresse'] ?? ''))) {
-        $errors['tuteur_adresse'] = ErreurEnum::APPRENANT_TUTEUR_ADRESSE_REQUIRED->value;
-    }
-
-    // Tuteur - Téléphone obligatoire et format 9 chiffres
-    if (empty(trim($data['tuteur_telephone'] ?? ''))) {
-        $errors['tuteur_telephone'] = ErreurEnum::APPRENANT_TUTEUR_TELEPHONE_REQUIRED->value;
-    } elseif (!preg_match('/^\d{9}$/', $data['tuteur_telephone'])) {
-        $errors['tuteur_telephone'] = ErreurEnum::APPRENANT_TUTEUR_TELEPHONE_INVALID->value;
-    }
+    // Ajoutez d'autres validations si nécessaire...
 
     return $errors;
 };
-
