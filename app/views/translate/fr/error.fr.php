@@ -20,8 +20,10 @@ $error = [
     "promo.name.exists" => "Ce nom de promotion existe déjà",
     "promo.date.format" => "Le format de date est incorrect",
     "promo.date.ordre" => "La date de fin doit être postérieure à la date de début",
-    "promo.add.failed" => "Échec de l'ajout de la promotion"
- 
+    "promo.add.failed" => "Échec de l'ajout de la promotion",
+    "ref_photo_required"=> "La photo est requise",
+    'ref_sessions_required'=> "Les sessions sont requises"
+
 
     // Erreurs liées aux référentiels
     // ErreurEnum::REF_NOM_REQUIRED->value => "Le nom du référentiel est requis.",

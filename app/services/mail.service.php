@@ -13,43 +13,52 @@ use PHPMailer\PHPMailer\SMTP;
  * @return bool Succès ou échec de l'envoi
  */
 function envoyer_email_bienvenue(array $apprenant, string $password): bool {
-    $mail = new PHPMailer(true);
-    
     try {
+        $mail = new PHPMailer(true);
+        
+
+
+        // $login->isSMTP();
+        // $login->Host       = 'smtp.gmail.com'; // Remplacez par votre serveur SMTP
+        // $login->SMTPAuth   = true;
+        // $login->Username   = 'fallou.ndiaye22@isep-thies.edu.sn'; // Remplacez par votre email
+        // $login->Password   = 'agrr effl ylta zgxm'; // Remplacez par votre mot de passe ou clé d'application
+        // $login->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        // $login->Port       = 587;
+        // $login->CharSet    = 'UTF-8';
+        
+        // // Destinataires
+        // $login->setFrom('fallou.ndiaye22@isep-thies.edu.sn', 'Sonatel Academy');
+        // $login->addAddress($apprenant['login'], $apprenant['nom_complet']);
+        
         // Configuration du serveur
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com'; // Remplacez par votre serveur SMTP
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'fallou.ndiaye22@isep-thies.edu.sn'; // Remplacez par votre email
-        $mail->Password   = 'agrr effl ylta zgxm'; // Remplacez par votre mot de passe ou clé d'application
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'fallou.ndiaye22@isep-thies.edu.sn'; // Remplacez par votre email
+        $mail->Password = 'agrr effl ylta zgxm'; // Remplacez par votre mot de passe d'application
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
-        $mail->CharSet    = 'UTF-8';
+        $mail->Port = 587;
+        $mail->CharSet = 'UTF-8';
         
         // Destinataires
         $mail->setFrom('fallou.ndiaye22@isep-thies.edu.sn', 'Sonatel Academy');
-        $mail->addAddress($apprenant['email'], $apprenant['nom_complet']);
+        $mail->addAddress($apprenant['login'], $apprenant['nom_complet']);
         
         // Contenu
         $mail->isHTML(true);
         $mail->Subject = 'Bienvenue à Sonatel Academy';
-        
-        // Corps du message HTML
         $mail->Body = generer_template_email_bienvenue($apprenant, $password);
-        
-        // Version texte alternative
         $mail->AltBody = "Bienvenue à Sonatel Academy!\n\n" .
                         "Votre compte a été créé avec succès.\n" .
                         "Matricule: {$apprenant['matricule']}\n" .
-                        "Email: {$apprenant['email']}\n" .
+                        "Login: {$apprenant['login']}\n" .
                         "Mot de passe: $password\n\n" .
                         "Veuillez vous connecter pour accéder à votre espace personnel.";
         
-        $mail->send();
-        return true;
+        return $mail->send();
     } catch (Exception $e) {
-        // Enregistrer l'erreur dans un fichier de log
-        error_log("Erreur d'envoi d'email: " . $mail->ErrorInfo);
+        error_log("Erreur d'envoi d'email: " . $e->getMessage());
         return false;
     }
 }
@@ -163,7 +172,7 @@ function generer_template_email_bienvenue(array $apprenant, string $password): s
                 
                 <div class="credentials">
                     <p><strong>Matricule:</strong> {$apprenant['matricule']}</p>
-                    <p><strong>Email:</strong> {$apprenant['email']}</p>
+                    <p><strong>Email:</strong> {$apprenant['login']}</p>
                     <p><strong>Mot de passe:</strong> {$password}</p>
                 </div>
                 
@@ -185,7 +194,7 @@ function generer_template_email_bienvenue(array $apprenant, string $password): s
                     <a href="https://twitter.com/sonatelacademy">Twitter</a> |
                     <a href="https://www.linkedin.com/company/sonatel-academy/">LinkedIn</a>
                 </div>
-                <p>© 2023 Sonatel Academy. Tous droits réservés.</p>
+                <p>© 2025 Falilloulahi NDIAYE.</p>
             </div>
         </div>
     </body>

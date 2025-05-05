@@ -26,9 +26,34 @@ function uploadPhoto(array $file, string $uploadDir, string $defaultPath = "asse
 }
 
 
+/**
+ * Gère l'upload d'une photo
+ * @param array $photo Données du fichier uploadé
+ * @return string|null Chemin de la photo ou null en cas d'échec
+ */
 function gerer_upload_photo(array $photo): ?string {
-    $repertoire = __DIR__ . '/../../public/assets/images/promo/';
-    return uploadPhoto($photo, $repertoire);
+    // Vérifier si le fichier a été correctement uploadé
+    if (!isset($photo) || $photo['error'] !== UPLOAD_ERR_OK) {
+        return null;
+    }
+    
+    // Créer le dossier de destination s'il n'existe pas
+    $dossierDestination = __DIR__ . '/../../public/assets/images/promo/';
+    if (!is_dir($dossierDestination)) {
+        mkdir($dossierDestination, 0777, true);
+    }
+    
+    // Générer un nom de fichier unique pour éviter les conflits
+    $nomFichier = basename($photo['name']);
+    $cheminComplet = $dossierDestination . $nomFichier;
+    
+    // Déplacer le fichier uploadé
+    if (move_uploaded_file($photo['tmp_name'], $cheminComplet)) {
+        // Retourner le chemin relatif pour stockage en BDD
+        return 'assets/images/promo/' . $nomFichier;
+    }
+    
+    return null;
 }
 
 

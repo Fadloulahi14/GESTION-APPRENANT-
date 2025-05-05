@@ -221,7 +221,6 @@ function gerer_erreurs(array $erreurs, array $post): void {
 function traiter_creation_promotion(): void {
     global $model_tab, $validator, $promos;
     
-    
     // 1. Validation
     $erreurs = collecter_erreurs_validation($_POST, $_FILES);
     if (!empty($erreurs)) {
@@ -232,6 +231,14 @@ function traiter_creation_promotion(): void {
     try {
         // 2. Traitement de la photo
         $cheminPhoto = gerer_upload_photo($_FILES['photo']);
+        
+        // Vérifier si l'upload a réussi
+        if ($cheminPhoto === null) {
+            stocker_session('errors', ['photo' => ErreurEnum::REF_PHOTO_INVALID->value]);
+            stocker_session('old_inputs', $_POST);
+            redirect_to_route('index.php', ['page' => 'add_promo']);
+            return;
+        }
         
         // 3. Chargement des données existantes et création
         $donneesExistantes = charger_promotions_existantes(CheminPage::DATA_JSON->value);

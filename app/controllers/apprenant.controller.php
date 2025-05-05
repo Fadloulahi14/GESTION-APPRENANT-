@@ -4,7 +4,8 @@ require_once __DIR__ . '/../services/export.php';
 require_once __DIR__ . '/../enums/chemin_page.php';
 require_once __DIR__ . '/../enums/model.enum.php';
 require_once __DIR__ . '/../services/pagination.service.php';
-
+require_once __DIR__ . '/../services/session.service.php';
+require_once __DIR__ . '/../services/mail.service.php';
 
 use App\Enums\CheminPage;
 use App\Models\APPMETHODE;
@@ -189,65 +190,163 @@ function ajout_apprenant_vue(): void {
 /**
  * Traiter ajout apprenant (POST)
  */
+// function traiter_ajout_apprenant(): void {
+//     global $apprenants, $validator;
+//     var_dump('ok');
+//     die();
+//     try {
+//         demarrer_session();
+
+//         // Vérifiez si le formulaire a été soumis
+//         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+//             enregistrer_message_erreur('Méthode non autorisée.');
+//             redirect_to_route('index.php', ['page' => 'ajouter_apprenant']);
+//             exit;
+//         }
+
+//         // Collectez les données du formulaire
+//         $data = [
+//             'matricule' => trim($_POST['matricule'] ?? ''),
+//             'nom_complet' => trim($_POST['nom_complet'] ?? ''),
+//             'date_naissance' => trim($_POST['date_naissance'] ?? ''),
+//             'lieu_naissance' => trim($_POST['lieu_naissance'] ?? ''),
+//             'adresse' => trim($_POST['adresse'] ?? ''),
+//             'email' => trim($_POST['email'] ?? ''), // Utilisation correcte de "email"
+//             'telephone' => trim($_POST['telephone'] ?? ''),
+//             'referenciel' => (int)($_POST['referenciel'] ?? 0),
+//             'tuteur_nom' => trim($_POST['tuteur_nom'] ?? ''),
+//             'lien_parente' => trim($_POST['lien_parente'] ?? ''),
+//             'tuteur_adresse' => trim($_POST['tuteur_adresse'] ?? ''),
+//             'tuteur_telephone' => trim($_POST['tuteur_telephone'] ?? ''),
+//             'statut' => 'Retenu',
+//             'password' => password_hash('password123', PASSWORD_DEFAULT)
+//         ];
+
+//         // Validez les données
+//         $errors = $validator[VALIDATORMETHODE::APPRENANT->value]($data); // Utilisation correcte de la constante
+
+//         if (!empty($errors)) {
+//             enregistrer_message_erreur('Veuillez corriger les erreurs dans le formulaire.');
+//             stocker_session('errors', $errors);
+//             stocker_session('old_inputs', $data);
+//             redirect_to_route('index.php', ['page' => 'ajouter_apprenant']);
+//             exit;
+//         }
+
+//         // Ajoutez l'apprenant
+//         $cheminJson = CheminPage::DATA_JSON->value;
+//         $resultat = $apprenants[APPMETHODE::AJOUTER->value]($data, $cheminJson);
+
+//         if ($resultat) {
+//             enregistrer_message_succes('Apprenant ajouté avec succès.');
+//         } else {
+//             enregistrer_message_erreur('Échec de l\'ajout de l\'apprenant.');
+//         }
+//     } catch (Exception $e) {
+//         error_log('Erreur lors de l\'ajout d\'un apprenant: ' . $e->getMessage());
+//         enregistrer_message_erreur('Une erreur est survenue: ' . $e->getMessage());
+//     }
+
+//     // Redirection vers la liste des apprenants
+//     // redirect_to_route('index.php', ['page' => 'apprenant']);
+//     header('Location: index.php?page=apprena');
+// }
+
+
+// function traiter_ajout_apprenant(): void {
+//     global $apprenants, $validator;
+
+//     demarrer_session();
+    
+
+//     $data = [
+//         'matricule' => trim($_POST['matricule'] ?? ''),
+//         'nom_complet' => trim($_POST['nom_complet'] ?? ''),
+//         'date_naissance' => trim($_POST['date_naissance'] ?? ''),
+//         'lieu_naissance' => trim($_POST['lieu_naissance'] ?? ''),
+//         'adresse' => trim($_POST['adresse'] ?? ''),
+//         'login' => trim($_POST['login'] ?? ''),
+//         'telephone' => trim($_POST['telephone'] ?? ''),
+//         'referenciel' => $_POST['referenciel'] ?? '',
+//         'photo' => $_FILES['document'] ?? null,
+//         'tuteur_nom' => trim($_POST['tuteur_nom'] ?? ''),
+//         'lien_parente' => trim($_POST['lien_parente'] ?? ''),
+//         'tuteur_adresse' => trim($_POST['tuteur_adresse'] ?? ''),
+//         'tuteur_telephone' => trim($_POST['tuteur_telephone'] ?? ''),
+//         'document' => $_FILES['document'] ?? null
+        
+//     ];
+
+//     $errors = $validator[VALIDATORMETHODE::APPRENANT->value]($data);
+
+//     if (!empty($errors)) {
+//         stocker_session('errors', $errors);
+//         stocker_session('old_inputs', $data);
+//         redirect_to_route('index.php', ['page' => 'ajouter_apprenant']);
+//         exit;
+//     }
+
+//     $cheminJson = CheminPage::DATA_JSON->value;
+//     $nouvelApprenant = creer_donnees_apprenant($data);
+
+//     $apprenants[APPMETHODE::AJOUTER->value]($nouvelApprenant, $cheminJson);
+
+//     enregistrer_message_succes('Apprenant ajouté avec succès.');
+//     redirect_to_route('index.php', ['page' => 'liste_apprenant']);
+// }
+
 function traiter_ajout_apprenant(): void {
     global $apprenants, $validator;
 
-    try {
-        demarrer_session();
+    demarrer_session();
 
-        // Vérifiez si le formulaire a été soumis
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            enregistrer_message_erreur('Méthode non autorisée.');
-            redirect_to_route('index.php', ['page' => 'ajouter_apprenant']);
-            exit;
-        }
+    // Générer un mot de passe par défaut
+    $default_password = generer_mot_de_passe(10);
 
-        // Collectez les données du formulaire
-        $data = [
-            'matricule' => trim($_POST['matricule'] ?? ''),
-            'nom_complet' => trim($_POST['nom_complet'] ?? ''),
-            'date_naissance' => trim($_POST['date_naissance'] ?? ''),
-            'lieu_naissance' => trim($_POST['lieu_naissance'] ?? ''),
-            'adresse' => trim($_POST['adresse'] ?? ''),
-            'email' => trim($_POST['email'] ?? ''), // Utilisation correcte de "email"
-            'telephone' => trim($_POST['telephone'] ?? ''),
-            'referenciel' => (int)($_POST['referenciel'] ?? 0),
-            'tuteur_nom' => trim($_POST['tuteur_nom'] ?? ''),
-            'lien_parente' => trim($_POST['lien_parente'] ?? ''),
-            'tuteur_adresse' => trim($_POST['tuteur_adresse'] ?? ''),
-            'tuteur_telephone' => trim($_POST['tuteur_telephone'] ?? ''),
-            'statut' => 'Retenu',
-            'password' => password_hash('password123', PASSWORD_DEFAULT)
-        ];
+    $data = [
+        'matricule' => trim($_POST['matricule'] ?? ''),
+        'nom_complet' => trim($_POST['nom_complet'] ?? ''),
+        'date_naissance' => trim($_POST['date_naissance'] ?? ''),
+        'lieu_naissance' => trim($_POST['lieu_naissance'] ?? ''),
+        'adresse' => trim($_POST['adresse'] ?? ''),
+        'login' => trim($_POST['login'] ?? ''),
+        'telephone' => trim($_POST['telephone'] ?? ''),
+        'referenciel' => $_POST['referenciel'] ?? '',
+        'photo' => $_FILES['document'] ?? null,
+        'tuteur_nom' => trim($_POST['tuteur_nom'] ?? ''),
+        'lien_parente' => trim($_POST['lien_parente'] ?? ''),
+        'tuteur_adresse' => trim($_POST['tuteur_adresse'] ?? ''),
+        'tuteur_telephone' => trim($_POST['tuteur_telephone'] ?? ''),
+        'document' => $_FILES['document'] ?? null,
+        'password' => password_hash($default_password, PASSWORD_DEFAULT)
+    ];
 
-        // Validez les données
-        $errors = $validator[VALIDATORMETHODE::APPRENANT->value]($data); // Utilisation correcte de la constante
+    $errors = $validator[VALIDATORMETHODE::APPRENANT->value]($data);
 
-        if (!empty($errors)) {
-            enregistrer_message_erreur('Veuillez corriger les erreurs dans le formulaire.');
-            stocker_session('errors', $errors);
-            stocker_session('old_inputs', $data);
-            redirect_to_route('index.php', ['page' => 'ajouter_apprenant']);
-            exit;
-        }
-
-        // Ajoutez l'apprenant
-        $cheminJson = CheminPage::DATA_JSON->value;
-        $resultat = $apprenants[APPMETHODE::AJOUTER->value]($data, $cheminJson);
-
-        if ($resultat) {
-            enregistrer_message_succes('Apprenant ajouté avec succès.');
-        } else {
-            enregistrer_message_erreur('Échec de l\'ajout de l\'apprenant.');
-        }
-    } catch (Exception $e) {
-        error_log('Erreur lors de l\'ajout d\'un apprenant: ' . $e->getMessage());
-        enregistrer_message_erreur('Une erreur est survenue: ' . $e->getMessage());
+    if (!empty($errors)) {
+        stocker_session('errors', $errors);
+        stocker_session('old_inputs', $data);
+        redirect_to_route('index.php', ['page' => 'ajouter_apprenant']);
+        exit;
     }
 
-    // Redirection vers la liste des apprenants
+    $cheminJson = CheminPage::DATA_JSON->value;
+    $nouvelApprenant = creer_donnees_apprenant($data);
+
+    if ($apprenants[APPMETHODE::AJOUTER->value]($nouvelApprenant, $cheminJson)) {
+        // Envoi de l'email
+        if (envoyer_email_bienvenue($nouvelApprenant, $default_password)) {
+            enregistrer_message_succes('Apprenant ajouté avec succès et email envoyé.');
+        } else {
+            enregistrer_message_succes('Apprenant ajouté avec succès mais l\'email n\'a pas pu être envoyé.');
+        }
+    } else {
+        enregistrer_message_erreur('Échec de l\'ajout de l\'apprenant.');
+    }
+
     redirect_to_route('index.php', ['page' => 'liste_apprenant']);
 }
+
 
 /**
  * Génère un mot de passe aléatoire
@@ -285,21 +384,79 @@ function charger_referenciels(): array {
 /**
  * Préparer les données d'un nouvel apprenant
  */
+// function creer_donnees_apprenant(array $post): array {
+//     return [
+//         'matricule' => $post['matricule'],
+//         'nom_complet' => $post['nom_complet'],
+//         'date_naissance' => $post['date_naissance'],
+//         'lieu_naissance' => $post['lieu_naissance'],
+//         'adresse' => $post['adresse'],
+//         'email' => $post['email'],
+//         'telephone' => $post['telephone'],
+//         'referenciel' => (int) $post['referenciel'],
+//         'photo' => $post['photo']['name'] ?? '', // ou chemin si tu veux upload
+//         'statut' => 'Retenu',
+//         'profil' => 'Apprenant',
+//         'password' => password_hash('password123', PASSWORD_DEFAULT),
+//         'id' => time() + rand(1, 999)
+//     ];
+// }
+
+// function creer_donnees_apprenant(array $post): array {
+//     return [
+//         'matricule' => $post['matricule'],
+//         'nom_complet' => $post['nom_complet'],
+//         'date_naissance' => $post['date_naissance'],
+//         'lieu_naissance' => $post['lieu_naissance'],
+//         'adresse' => $post['adresse'],
+//         'login' => $post['login'],
+//         'telephone' => $post['telephone'],
+//         'referenciel' => (int) $post['referenciel'],
+//         'photo' => $post['photo']['name'] ?? '', // ou chemin si tu veux upload
+//         'statut' => 'Retenu',
+//         'profil' => 'Apprenant',
+//         'password' => password_hash('password123', PASSWORD_DEFAULT),
+//         'id' => time() + rand(1, 999),
+//         'changer'=> 'false',
+//         'tuteur_nom' => $post['tuteur_nom'] ?? '',
+//         'lien_parente' => $post['lien_parente'] ?? '',
+//         'tuteur_adresse' => $post['tuteur_adresse'] ?? '',
+//         'tuteur_telephone' => $post['tuteur_telephone'] ?? '',
+//         'document' => $post['document']['name'] ?? '', // ou chemin si tu veux upload
+
+
+                  
+          
+        
+//     ];
+//    // envoyerEmailApprenant($post['login'], $post['login'],'password123');
+
+
+// }
+
 function creer_donnees_apprenant(array $post): array {
+    $matricule = generer_matricule();
+    
     return [
-        'matricule' => $post['matricule'],
+        'matricule' => $matricule,
         'nom_complet' => $post['nom_complet'],
         'date_naissance' => $post['date_naissance'],
         'lieu_naissance' => $post['lieu_naissance'],
         'adresse' => $post['adresse'],
-        'email' => $post['email'],
+        'login' => $post['login'],
         'telephone' => $post['telephone'],
         'referenciel' => (int) $post['referenciel'],
-        'photo' => $post['photo']['name'] ?? '', // ou chemin si tu veux upload
+        'photo' => $post['photo']['name'] ?? '',
         'statut' => 'Retenu',
         'profil' => 'Apprenant',
-        'password' => password_hash('password123', PASSWORD_DEFAULT),
-        'id' => time() + rand(1, 999)
+        'password' => $post['password'],
+        'id' => time() + rand(1, 999),
+        'changer'=> 'false',
+        'tuteur_nom' => $post['tuteur_nom'],
+        'lien_parente' => $post['lien_parente'],
+        'tuteur_adresse' => $post['tuteur_adresse'],
+        'tuteur_telephone' => $post['tuteur_telephone'],
+        'document' => $post['document']['name'] ?? ''
     ];
 }
 

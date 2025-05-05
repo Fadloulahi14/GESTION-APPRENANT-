@@ -34,28 +34,28 @@ $old = recuperer_session('old_inputs', []);
             <strong class="stat-value"><?= $stats['totalApprenants'] ?></strong>
             <span class="stat-label">Apprenants</span>
         </div>
-        <div class="icon"><img src="/assets/images/icone1.png" alt=""></div>
+        <div class="icon"><img src="/assets/icone/icone1.png" alt=""></div>
     </div>
     <div class="stat orange">
         <div class="stat-content">
             <strong class="stat-value"><?= $stats['totalReferentiels'] ?></strong>
             <span class="stat-label">Référentiels</span>
         </div>
-        <div class="icon"><img src="/assets/images/ICONE2.png" alt=""></div>
+        <div class="icon"><img src="/assets/icone/ICONE2.png" alt=""></div>
     </div>
     <div class="stat orange">
         <div class="stat-content">
             <strong class="stat-value"><?= $stats['promotionActive'] ?></strong>
             <span class="stat-label">Promotions actives</span>
         </div>
-        <div class="icon"><img src="/assets/images/ICONE3.png" alt=""></div>
+        <div class="icon"><img src="/assets/icone/ICONE3.png" alt=""></div>
     </div>
     <div class="stat orange">
         <div class="stat-content">
             <strong class="stat-value"><?= $stats['totalPromotions'] ?></strong>
             <span class="stat-label">Total promotions</span>
         </div>
-        <div class="icon"><img src="/assets/images/ICONE4.png" alt=""></div>
+        <div class="icon"><img src="/assets/icone/ICONE4.png" alt=""></div>
     </div>
     <a class="add-btn" href="index.php?page=add_promo">+ Ajouter une promotion</a>
 </div>

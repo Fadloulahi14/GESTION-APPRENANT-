@@ -51,3 +51,8 @@ function recuperer_messages(string $cle): array {
     unset($_SESSION[$cle]); // Flash : suppression après lecture
     return $messages;
 }
+function recuperer_session_flash(string $cle, mixed $defaut = null): mixed {
+    $valeur = $_SESSION[$cle] ?? $defaut;
+    unset($_SESSION[$cle]);
+    return $valeur;
+}

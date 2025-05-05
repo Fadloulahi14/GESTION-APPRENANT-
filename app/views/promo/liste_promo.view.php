@@ -84,7 +84,7 @@ $paginatedPromos = array_slice($filteredPromotions, $start, $perPage);
   <div class="toolbar">
     <form method="GET" action="index.php" style="display: flex; flex: 1;">
         <div class="search-box">
-            <i class="fa fa-search"></i>
+            <i class="fa fa-search"><img src="ass" alt=""></i>
             <input type="hidden" name="page" value="liste_table_promo">
             <input type="text" name="search" placeholder="Rechercher..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
         </div>

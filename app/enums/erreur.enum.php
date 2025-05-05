@@ -49,30 +49,30 @@ case EXCEL_IMPORT_ECHEC = 'Échec de l\'importation';
 
     
 
-case APPRENANT_NOM_REQUIRED = 'nom_apprenant_obligatoire';
-case APPRENANT_EMAIL_REQUIRED = 'email_apprenant_obligatoire';
-case APPRENANT_EMAIL_INVALID = 'email_apprenant_invalide';
-case APPRENANT_TELEPHONE_REQUIRED = 'telephone_apprenant_obligatoire';
-case APPRENANT_TELEPHONE_INVALID = 'telephone_apprenant_invalide';
-case APPRENANT_MATRICULE_REQUIRED = 'matricule_apprenant_obligatoire';
-case APPRENANT_MATRICULE_EXISTS = 'matricule_apprenant_existe_deja';
-case APPRENANT_REFERENTIEL_REQUIRED = 'referentiel_apprenant_obligatoire';
-case APPRENANT_PHOTO_REQUIRED = 'photo_apprenant_obligatoire';
-case APPRENANT_PHOTO_INVALID = 'photo_apprenant_invalide';
-case APPRENANT_DATE_NAISSANCE_REQUIRED = 'date_naissance_apprenant_obligatoire';
-case APPRENANT_DATE_NAISSANCE_INVALID = 'date_naissance_apprenant_invalide';
-case APPRENANT_LIEU_NAISSANCE_REQUIRED = 'lieu_naissance_apprenant_obligatoire';
-case APPRENANT_ADRESSE_REQUIRED = 'adresse_apprenant_obligatoire';
-case APPRENANT_ADD_FAILED = 'ajout_apprenant_echoue';
-case APPRENANT_UPDATE_FAILED = 'modification_apprenant_echoue';
-case APPRENANT_DELETE_FAILED = 'suppression_apprenant_echoue';
+// case APPRENANT_NOM_REQUIRED = 'nom_apprenant_obligatoire';
+// case APPRENANT_EMAIL_REQUIRED = 'email_apprenant_obligatoire';
+// case APPRENANT_EMAIL_INVALID = 'email_apprenant_invalide';
+// case APPRENANT_TELEPHONE_REQUIRED = 'telephone_apprenant_obligatoire';
+// case APPRENANT_TELEPHONE_INVALID = 'telephone_apprenant_invalide';
+// case APPRENANT_MATRICULE_REQUIRED = 'matricule_apprenant_obligatoire';
+// case APPRENANT_MATRICULE_EXISTS = 'matricule_apprenant_existe_deja';
+// case APPRENANT_REFERENTIEL_REQUIRED = 'referentiel_apprenant_obligatoire';
+// case APPRENANT_PHOTO_REQUIRED = 'photo_apprenant_obligatoire';
+// case APPRENANT_PHOTO_INVALID = 'photo_apprenant_invalide';
+// case APPRENANT_DATE_NAISSANCE_REQUIRED = 'date_naissance_apprenant_obligatoire';
+// case APPRENANT_DATE_NAISSANCE_INVALID = 'date_naissance_apprenant_invalide';
+// case APPRENANT_LIEU_NAISSANCE_REQUIRED = 'lieu_naissance_apprenant_obligatoire';
+// case APPRENANT_ADRESSE_REQUIRED = 'adresse_apprenant_obligatoire';
+// case APPRENANT_ADD_FAILED = 'ajout_apprenant_echoue';
+// case APPRENANT_UPDATE_FAILED = 'modification_apprenant_echoue';
+// case APPRENANT_DELETE_FAILED = 'suppression_apprenant_echoue';
 
-case APPRENANT_TUTEUR_NOM_REQUIRED = 'Le nom du tuteur est obligatoire.';
-case APPRENANT_LIEN_PARENT_REQUIRED = 'Le lien de parenté est obligatoire.';
-case APPRENANT_TUTEUR_ADRESSE_REQUIRED = 'L\'adresse du tuteur est obligatoire.';
-case APPRENANT_TUTEUR_TELEPHONE_REQUIRED = 'Le téléphone du tuteur est obligatoire.';
-case APPRENANT_TUTEUR_TELEPHONE_INVALID = 'Le téléphone du tuteur doit être un numéro valide de 9 chiffres.';
-case APPRENANT_TELEPHONE_EXISTS = 'Le téléphone existe dejas.';
+// case APPRENANT_TUTEUR_NOM_REQUIRED = 'Le nom du tuteur est obligatoire.';
+// case APPRENANT_LIEN_PARENT_REQUIRED = 'Le lien de parenté est obligatoire.';
+// case APPRENANT_TUTEUR_ADRESSE_REQUIRED = 'L\'adresse du tuteur est obligatoire.';
+// case APPRENANT_TUTEUR_TELEPHONE_REQUIRED = 'Le téléphone du tuteur est obligatoire.';
+// case APPRENANT_TUTEUR_TELEPHONE_INVALID = 'Le téléphone du tuteur doit être un numéro valide de 9 chiffres.';
+// case APPRENANT_TELEPHONE_EXISTS = 'Le téléphone existe dejas.';
 
 
 
@@ -81,6 +81,37 @@ case EXCEL_EMAIL_DUPLIQUE = 'email_unique';
 case EXCEL_MATRICULE_DUPLIQUE = 'matricule_unique';
 case EXCEL_COLONNE_VIDE = 'colonne_non_vide';
 case FICHIER_NON_EXCEL = 'fichier_valid';
+
+
+case APPRENANT_NOM_REQUIRED = 'nom_apprenant_obligatoire';
+    case APPRENANT_EMAIL_REQUIRED = 'email_apprenant_obligatoire';
+    case APPRENANT_EMAIL_INVALID = 'email_apprenant_invalide';
+    case APPRENANT_TELEPHONE_REQUIRED = 'telephone_apprenant_obligatoire';
+    case APPRENANT_TELEPHONE_INVALID = 'telephone_apprenant_invalide';
+    case APPRENANT_MATRICULE_REQUIRED = 'matricule_apprenant_obligatoire';
+    case APPRENANT_MATRICULE_EXISTS = 'matricule_apprenant_existe_deja';
+    case APPRENANT_REFERENTIEL_REQUIRED = 'referentiel_apprenant_obligatoire';
+    case APPRENANT_PHOTO_REQUIRED = 'photo_apprenant_obligatoire';
+    case APPRENANT_PHOTO_INVALID = 'photo_apprenant_invalide';
+    case APPRENANT_DATE_NAISSANCE_REQUIRED = 'date_naissance_apprenant_obligatoire';
+    case APPRENANT_DATE_NAISSANCE_INVALID = 'date_naissance_apprenant_invalide';
+    case APPRENANT_LIEU_NAISSANCE_REQUIRED = 'lieu_naissance_apprenant_obligatoire';
+    case APPRENANT_ADRESSE_REQUIRED = 'adresse_apprenant_obligatoire';
+    case APPRENANT_ADD_FAILED = 'ajout_apprenant_echoue';
+    case APPRENANT_UPDATE_FAILED = 'modification_apprenant_echoue';
+    case APPRENANT_DELETE_FAILED = 'suppression_apprenant_echoue';
+
+    case APPRENANT_TUTEUR_NOM_REQUIRED = 'Le nom du tuteur est obligatoire.';
+case APPRENANT_LIEN_PARENT_REQUIRED = 'Le lien de parenté est obligatoire.';
+case APPRENANT_TUTEUR_ADRESSE_REQUIRED = 'L\'adresse du tuteur est obligatoire.';
+case APPRENANT_TUTEUR_TELEPHONE_REQUIRED = 'Le téléphone du tuteur est obligatoire.';
+case APPRENANT_TUTEUR_TELEPHONE_INVALID = 'Le téléphone du tuteur doit être un numéro valide de 9 chiffres.';
+case APPRENANT_TELEPHONE_EXISTS = 'Le téléphone existe dejas.';
+
+
+case APPRENANT_EMAIL_UNIQUE = 'Cette adresse email est déjà utilisée.';
+
+
 
     
 }

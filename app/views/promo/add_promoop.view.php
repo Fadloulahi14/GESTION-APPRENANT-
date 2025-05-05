@@ -97,11 +97,17 @@
         }
 
         .ref-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap : 40px;
             margin-top: 10px;
             padding: 10px;
             background: #f6f6f6;
             border-radius: 6px;
             border: 1px solid #ddd;
+        overflow: auto;
+            max-height: 200px;
         }
 
         .ref-item {
@@ -196,7 +202,7 @@ input[type="date"] {
             <label>
                 Date de début
                 <input 
-                    
+                    type="text"
                     name="date_debut" 
                     value="<?= htmlspecialchars($old['date_debut'] ?? '') ?>"
                     class="<?= isset($erreurs['date_debut']) ? 'error' : '' ?>">
@@ -208,7 +214,7 @@ input[type="date"] {
             <label>
                 Date de fin
                 <input 
-                    
+                    type="text"
                     name="date_fin" 
                     value="<?= htmlspecialchars($old['date_fin'] ?? '') ?>"
                     class="<?= isset($erreurs['date_fin']) ? 'error' : '' ?>">

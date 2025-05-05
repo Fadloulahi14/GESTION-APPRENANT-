@@ -1,4 +1,9 @@
 <?php
+
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/../enums/chemin_page.php';
 
 use App\Enums\CheminPage;
@@ -58,6 +63,7 @@ if (isset($_GET['page']) && $_GET['page'] === 'apprenant') {
     exit;
 }
 $page = $_GET['page'] ?? 'login';
+
 // Résolution des routes
 match ($page) {
     'login', 'logout' => (function () {
@@ -70,6 +76,7 @@ match ($page) {
 
     'liste_promo', => (function () {
         require_once CheminPage::PROMO_CONTROLLER->value;
+        
     })(),
     'liste_table_promo' => (function () {
     require_once CheminPage::PROMO_CONTROLLER->value;
@@ -102,7 +109,8 @@ match ($page) {
         lister_apprenant();
     })(),
     'traiter_ajout_apprenant' => function() {
-        traiter_ajout_apprenant();
+       
+            traiter_ajout_apprenant();
     },
 
     
@@ -111,9 +119,11 @@ match ($page) {
     require_once CheminPage::APPRENANT_CONTROLLER->value;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         traiter_ajout_apprenant();
+        
     } else {
         ajout_apprenant_vue();
     }
+    exit;
 })(),
 
     'detail_apprenant' => (function () {
@@ -131,7 +141,7 @@ match ($page) {
         })(),
         'apprenant' => (function() {
         require_once CheminPage::APPRENANT_CONTROLLER->value;
-        // afficher_apprenants();
+        afficher_apprenants();
     })(),
     
 
@@ -139,6 +149,33 @@ match ($page) {
         require_once CheminPage::APPRENANT_CONTROLLER->value;
  
     })(),
+
+    'login_apprenant' => (function() {
+        require_once __DIR__ . '/../controllers/auth_apprenant.controller.php';
+        voir_page_login_apprenant();
+    })(),
+    
+    'auth_apprenant' => (function() {
+        require_once __DIR__ . '/../controllers/auth_apprenant.controller.php';
+        authentifier_apprenant();
+    })(),
+    
+    'change_password_apprenant' => (function() {
+        require_once __DIR__ . '/../controllers/auth_apprenant.controller.php';
+        changer_mot_de_passe_apprenant();
+    })(),
+    
+    'logout_apprenant' => (function() {
+        require_once __DIR__ . '/../controllers/auth_apprenant.controller.php';
+        deconnecter_apprenant();
+    })(),
+    
+    'apprenant_dashboard' => (function() {
+        require_once __DIR__ . '/../controllers/auth_apprenant.controller.php';
+        // La vue gère elle-même la vérification de session
+        render('apprenant/apprenant_dashboard', [], layout: null);
+    })(),
+
     default => (function () {
         require_once CheminPage::ERROR_CONTROLLER->value;
     })()

@@ -26,40 +26,56 @@ $apprenants = [
     },
 
     // Ajoute un apprenant (utilisateur avec le profil "Apprenant")
+    // APPMETHODE::AJOUTER->value => function (array $nouvelApprenant, string $chemin): bool {
+    //     try {
+    //         global $model_tab;
+
+    //         // Vérifiez si le fichier JSON existe
+    //         if (!file_exists($chemin)) {
+    //             // Créez une structure de base si le fichier n'existe pas
+    //             $data = [
+    //                 'utilisateurs' => [],
+    //                 'referenciel' => [],
+    //                 'promotions' => [],
+    //                 'apprenants' => []
+    //             ];
+    //         } else {
+    //             // Chargez les données existantes
+    //             $data = $model_tab[JSONMETHODE::JSONTOARRAY->value]($chemin);
+
+    //             if (!isset($data['utilisateurs'])) {
+    //                 $data['utilisateurs'] = [];
+    //             }
+    //         }
+
+    //         // Ajoutez le profil "Apprenant" au nouvel utilisateur
+    //         $nouvelApprenant['profil'] = 'Apprenant';
+    //         $nouvelApprenant['id'] = time() + rand(1, 999); // Génération d'un ID unique
+    //         $data['utilisateurs'][] = $nouvelApprenant;
+
+    //         // Sauvegardez les modifications dans le fichier JSON
+    //         return $model_tab[JSONMETHODE::ARRAYTOJSON->value]($data, $chemin);
+    //     } catch (Exception $e) {
+    //         error_log('Erreur lors de l\'ajout d\'un apprenant: ' . $e->getMessage());
+    //         return false;
+    //     }
+    // },
+
     APPMETHODE::AJOUTER->value => function (array $nouvelApprenant, string $chemin): bool {
-        try {
-            global $model_tab;
+        global $model_tab;
+        $data = $model_tab[JSONMETHODE::JSONTOARRAY->value]($chemin);
 
-            // Vérifiez si le fichier JSON existe
-            if (!file_exists($chemin)) {
-                // Créez une structure de base si le fichier n'existe pas
-                $data = [
-                    'utilisateurs' => [],
-                    'referenciel' => [],
-                    'promotions' => [],
-                    'apprenants' => []
-                ];
-            } else {
-                // Chargez les données existantes
-                $data = $model_tab[JSONMETHODE::JSONTOARRAY->value]($chemin);
-
-                if (!isset($data['utilisateurs'])) {
-                    $data['utilisateurs'] = [];
-                }
-            }
-
-            // Ajoutez le profil "Apprenant" au nouvel utilisateur
-            $nouvelApprenant['profil'] = 'Apprenant';
-            $nouvelApprenant['id'] = time() + rand(1, 999); // Génération d'un ID unique
-            $data['utilisateurs'][] = $nouvelApprenant;
-
-            // Sauvegardez les modifications dans le fichier JSON
-            return $model_tab[JSONMETHODE::ARRAYTOJSON->value]($data, $chemin);
-        } catch (Exception $e) {
-            error_log('Erreur lors de l\'ajout d\'un apprenant: ' . $e->getMessage());
-            return false;
+        if (!isset($data['utilisateurs'])) {
+            $data['utilisateurs'] = [];
         }
+
+        // Ajouter le profil "Apprenant" au nouvel utilisateur
+        $nouvelApprenant['profil'] = 'Apprenant';
+        $data['utilisateurs'][] = $nouvelApprenant;
+
+        return $model_tab[JSONMETHODE::ARRAYTOJSON->value]($data, $chemin);
     },
+
 
     // Importe plusieurs apprenants à partir d'un tableau
     APPMETHODE::IMPORTER->value => function (array $nouveauxApprenants, string $chemin): bool {
